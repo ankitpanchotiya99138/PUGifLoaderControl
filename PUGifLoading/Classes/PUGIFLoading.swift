@@ -60,7 +60,7 @@ public class PUGIFLoading
                     label.textColor = Color_RGBA(214, 144, 5, 1)
                     label.font = FontWithSize("Verdana", 10)
                     label.sizeToFit()
-                    label.center = CGPoint(x: imageView.center.x, y: imageView.center.y + 30)
+                    label.center = CGPoint(x: imageView.center.x, y: imageView.center.y + 60)
                     overlay.addSubview(label)
                 }
             }
