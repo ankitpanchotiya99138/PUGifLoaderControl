@@ -100,7 +100,7 @@ public class PUGIFLoading
                                 label.textColor = labelfontcolor
                                 label.font = FontWithSize("Verdana", labelfontsize)
                                 label.sizeToFit()
-                                label.center = CGPoint(x: indicator.center.x, y: indicator.center.y + 30)
+                                label.center = CGPoint(x: indicator.center.x, y: indicator.center.y + 60)
                                 overlay.addSubview(label)
                             }
                     }
