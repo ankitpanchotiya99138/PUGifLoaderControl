@@ -1,0 +1,5 @@
+ extern const unsigned char Pods_PUGifLoading_ExampleVersionString[];
+ extern const double Pods_PUGifLoading_ExampleVersionNumber;
+
+ const unsigned char Pods_PUGifLoading_ExampleVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:Pods_PUGifLoading_Example  PROJECT:Pods-1" "\n";
+ const double Pods_PUGifLoading_ExampleVersionNumber __attribute__ ((used)) = (double)1.;

@@ -7,8 +7,8 @@
 
 import Foundation
 import UIKit
-public class PUGIFLoading
-{
+
+public class PUGIFLoading {
     public var recentOverlay : UIView?
     public var recentOverlayTarget : UIView?
     public var recentLoadingText: String?
@@ -33,46 +33,76 @@ public class PUGIFLoading
         }
     }
     
-    public func show(_ loadingText : String?, gifimagename: String?, iWidth:CGFloat,iHight:CGFloat)
-    {
+    public func show(_ loadingText: String?, gifimagename: String?, iWidth: CGFloat, iHight: CGFloat) {
         hide()
-        if let keyWindow = UIWindow.key
-        {
-            let overlayvw = keyWindow
-            let overlay = UIView(frame: overlayvw.frame)
-            overlay.center = overlayvw.center
-            overlay.alpha = 0
-            overlay.backgroundColor = UIColor.black
-            overlayvw.addSubview(overlay)
-            overlayvw.bringSubviewToFront(overlay)
+        
+        if let keyWindow = UIWindow.key {
+            let overlay = UIView()
+            overlay.translatesAutoresizingMaskIntoConstraints = false
+            overlay.backgroundColor = UIColor(red: 133/255, green: 171/255, blue: 214/255, alpha: 0.4)
+            keyWindow.addSubview(overlay)
+
+            // Pin overlay to the entire screen
+            NSLayoutConstraint.activate([
+                overlay.topAnchor.constraint(equalTo: keyWindow.topAnchor),
+                overlay.bottomAnchor.constraint(equalTo: keyWindow.bottomAnchor),
+                overlay.leadingAnchor.constraint(equalTo: keyWindow.leadingAnchor),
+                overlay.trailingAnchor.constraint(equalTo: keyWindow.trailingAnchor)
+            ])
             
-            let jeremyGif = UIImage.gifImageWithName(name: gifimagename!)
-            let imageView = UIImageView(image: jeremyGif)
-            imageView.frame = CGRect(x: 20.0, y: 50.0, width: iWidth, height: iHight)
-            overlay.addSubview(imageView)
-            imageView.center = overlay.center;
-            if loadingText != ""
-            {
-                let label = UILabel()
-                if let textString = loadingText
-                {
-                    label.text = textString
-                    label.textColor = Color_RGBA(214, 144, 5, 1)
-                    label.font = FontWithSize("Verdana", 10)
-                    label.sizeToFit()
-                    label.center = CGPoint(x: imageView.center.x, y: imageView.center.y + 60)
-                    overlay.addSubview(label)
-                }
+            let imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            
+            if let gifName = gifimagename, let jeremyGif = UIImage.gifImageWithName(name: gifName) {
+                imageView.image = jeremyGif
             }
-            UIView.beginAnimations(nil, context: nil)
-            UIView.setAnimationDuration(0.5)
-            overlay.alpha = overlay.alpha > 0 ? 0 : 0.7
-            UIView.commitAnimations()
+            imageView.contentMode = .scaleAspectFit
+            overlay.addSubview(imageView)
+            
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.numberOfLines = 0
+            label.textAlignment = .center
+            label.textColor = .white
+            label.font = FontWithSize("Verdana", 12)
+            
+            if let textString = loadingText, !textString.isEmpty {
+                label.text = textString
+                overlay.addSubview(label)
+            }
+            
+            // Stack View for Centering Image & Label
+            let stackView = UIStackView(arrangedSubviews: [imageView, label])
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .vertical
+            stackView.alignment = .center
+            stackView.spacing = -10 // 20 points space between image and label
+            
+            overlay.addSubview(stackView)
+
+            // Constraints for StackView
+            NSLayoutConstraint.activate([
+                stackView.centerXAnchor.constraint(equalTo: overlay.centerXAnchor),
+                stackView.centerYAnchor.constraint(equalTo: overlay.centerYAnchor),
+                
+                imageView.leadingAnchor.constraint(equalTo: overlay.leadingAnchor, constant: 16),
+                imageView.trailingAnchor.constraint(equalTo: overlay.trailingAnchor, constant: -16),
+                
+                // Label Constraints (Handles Width)
+                label.leadingAnchor.constraint(equalTo: overlay.leadingAnchor, constant: 16),
+                label.trailingAnchor.constraint(equalTo: overlay.trailingAnchor, constant: -16)
+            ])
+            
+            UIView.animate(withDuration: 0.5) {
+                overlay.alpha = 1.0
+            }
+            
             recentOverlay = overlay
-            recentOverlayTarget = overlayvw
+            recentOverlayTarget = keyWindow
             recentLoadingText = loadingText
         }
     }
+    
     public func showWithActivityIndicator(_ loadingText:String?, activitycolor: UIColor, labelfontcolor:UIColor , labelfontsize: Int,activityStyle: UIActivityIndicatorView.Style)
     {
         hide()

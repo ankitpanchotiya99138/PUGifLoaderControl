@@ -1,0 +1,18 @@
+{
+  "" : {
+    "diagnostics" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/Pods-PUGifLoading_Example-master.dia",
+    "emit-module-dependencies" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/Pods-PUGifLoading_Example-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/Pods-PUGifLoading_Example-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/Pods-PUGifLoading_Example-master.swiftdeps"
+  },
+  "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/PUGifLoading/Classes/PUGifLoading.swift" : {
+    "const-values" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/PUGifLoading.swiftconstvalues",
+    "dependencies" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/PUGifLoading.d",
+    "diagnostics" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/PUGifLoading.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/PUGifLoading.o",
+    "llvm-bc" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/PUGifLoading.bc",
+    "object" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/PUGifLoading.o",
+    "swift-dependencies" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/PUGifLoading.swiftdeps",
+    "swiftmodule" : "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/Objects-normal/arm64/PUGifLoading~partial.swiftmodule"
+  }
+}

@@ -1,0 +1,6 @@
+Target dependency graph (3 targets)
+Target 'Pods-PUGifLoading_Tests' in project 'Pods'
+➜ Explicit dependency on target 'Pods-PUGifLoading_Example' in project 'Pods'
+Target 'Pods-PUGifLoading_Example' in project 'Pods'
+➜ Explicit dependency on target 'PUGifLoading' in project 'Pods'
+Target 'PUGifLoading' in project 'Pods' (no dependencies)

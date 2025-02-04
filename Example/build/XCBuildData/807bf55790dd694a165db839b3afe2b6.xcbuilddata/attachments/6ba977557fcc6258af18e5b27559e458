@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Debug-iphoneos/Pods_PUGifLoading_Example.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Debug-iphoneos/Pods_PUGifLoading_Example.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "Pods_PUGifLoading_Example-Swift.h",
+      'external-contents': "/Users/ankitpanchotiya/Documents/Ankit Project/PUGifLoader/Example/build/Pods.build/Debug-iphoneos/Pods-PUGifLoading_Example.build/unextended-interface-header.h",
+    }]
+    }]
+}
