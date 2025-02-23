@@ -7,8 +7,8 @@
 
 import Foundation
 import UIKit
-
-public class PUGIFLoading {
+public class PUGIFLoading
+{
     public var recentOverlay : UIView?
     public var recentOverlayTarget : UIView?
     public var recentLoadingText: String?
@@ -41,7 +41,7 @@ public class PUGIFLoading {
             overlay.translatesAutoresizingMaskIntoConstraints = false
             overlay.backgroundColor = UIColor(red: 133/255, green: 171/255, blue: 214/255, alpha: 0.4)
             keyWindow.addSubview(overlay)
-
+            
             // Pin overlay to the entire screen
             NSLayoutConstraint.activate([
                 overlay.topAnchor.constraint(equalTo: keyWindow.topAnchor),
@@ -53,7 +53,7 @@ public class PUGIFLoading {
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
             
-            if let gifName = gifimagename, let jeremyGif = UIImage.gifImageWithName(name: gifName) {
+            if let gifName = gifimagename, let jeremyGif = UIImage.gifImageWithName(source: gifName, speedMultiplier: 1.0) {
                 imageView.image = jeremyGif
             }
             imageView.contentMode = .scaleAspectFit
@@ -79,7 +79,7 @@ public class PUGIFLoading {
             stackView.spacing = -10 // 20 points space between image and label
             
             overlay.addSubview(stackView)
-
+            
             // Constraints for StackView
             NSLayoutConstraint.activate([
                 stackView.centerXAnchor.constraint(equalTo: overlay.centerXAnchor),
@@ -102,6 +102,7 @@ public class PUGIFLoading {
             recentLoadingText = loadingText
         }
     }
+
     
     public func showWithActivityIndicator(_ loadingText:String?, activitycolor: UIColor, labelfontcolor:UIColor , labelfontsize: Int,activityStyle: UIActivityIndicatorView.Style)
     {
@@ -130,7 +131,7 @@ public class PUGIFLoading {
                                 label.textColor = labelfontcolor
                                 label.font = FontWithSize("Verdana", labelfontsize)
                                 label.sizeToFit()
-                                label.center = CGPoint(x: indicator.center.x, y: indicator.center.y + 60)
+                                label.center = CGPoint(x: indicator.center.x, y: indicator.center.y + 30)
                                 overlay.addSubview(label)
                             }
                     }
@@ -301,5 +302,45 @@ extension UIImage
         let animation = UIImage.animatedImage(with: frames, duration: Double(duration) / 1000.0)
         
         return animation
+    }
+}
+
+import UIKit
+import ImageIO
+
+extension UIImage {
+    static func gifImageWithName(source: String, speedMultiplier: CGFloat) -> UIImage? {
+        guard let bundleURL = Bundle.main.url(forResource: source, withExtension: "gif") else {
+            print("GIF file not found")
+            return nil
+        }
+        guard let imageData = try? Data(contentsOf: bundleURL) else { return nil }
+        return gifImageWithData(imageData, speedMultiplier: speedMultiplier)
+    }
+
+    static func gifImageWithData(_ data: Data, speedMultiplier: CGFloat) -> UIImage? {
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return nil }
+        let count = CGImageSourceGetCount(source)
+        var images: [UIImage] = []
+        var duration: TimeInterval = 0.0
+
+        for i in 0..<count {
+            guard let image = CGImageSourceCreateImageAtIndex(source, i, nil) else { continue }
+            let frameDuration = gifFrameDuration(from: source, at: i) / Double(speedMultiplier)
+            duration += frameDuration
+            images.append(UIImage(cgImage: image))
+        }
+        
+        return UIImage.animatedImage(with: images, duration: duration)
+    }
+
+    static func gifFrameDuration(from source: CGImageSource, at index: Int) -> TimeInterval {
+        guard let properties = CGImageSourceCopyPropertiesAtIndex(source, index, nil) as? [CFString: Any],
+              let gifProperties = properties[kCGImagePropertyGIFDictionary] as? [CFString: Any],
+              let delayTime = gifProperties[kCGImagePropertyGIFUnclampedDelayTime] as? TimeInterval ??
+                             gifProperties[kCGImagePropertyGIFDelayTime] as? TimeInterval else {
+            return 0.1 // Default frame duration
+        }
+        return delayTime > 0.011 ? delayTime : 0.1
     }
 }
